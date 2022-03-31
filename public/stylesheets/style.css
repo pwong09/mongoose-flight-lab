@@ -1,8 +1,49 @@
+:root {
+  --main-color: #0d89bb;
+  --support-1: #87d7f6;
+}
 body {
+  height: 100vh;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--main-color);
+}
+nav a {
+  color: white;
+  text-decoration: none;
+}
+h3, form {
+  padding: 10px;
+}
+.new-flight {
+  font-size: 16px;
+}
+select, input {
+  padding: 5px 8px;
+  margin: 5px 0px;
+}
+.button {
+  color: white;
+  background-color: var(--support-1);
+  border: 1px solid var(--support-1);
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+table {
+  text-align: center;
+  border: 1px solid black;
+}
+th {
+  background-color: var(--support-1);
+  color: white;
+  padding: 10px;
 }
 
-a {
-  color: #00B7FF;
-}
