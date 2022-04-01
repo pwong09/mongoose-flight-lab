@@ -12,7 +12,8 @@ function index(req, res){
             flights,
             title: 'PW Flights Lab'
         });
-    });
+    }).
+    sort({departs: 'ascending'})
 }
 
 function create(req, res){

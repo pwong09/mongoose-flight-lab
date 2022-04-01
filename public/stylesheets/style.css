@@ -26,6 +26,7 @@ h3, form {
 select, input {
   padding: 5px 8px;
   margin: 5px 0px;
+  font-family: Helvetica, sans-serif;
 }
 .button {
   color: white;
@@ -36,6 +37,15 @@ select, input {
   font-size: 16px;
   font-weight: 700;
   margin-top: 10px;
+}
+.sort-options {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 15px;
+}
+a {
+  text-decoration: none;
+  color: var(--main-color);
 }
 table {
   text-align: center;
