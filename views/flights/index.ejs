@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script defer src="/javascripts/flightsview.js"></script>
-    <title> <%= title %>  </title>
-</head>
-<body>
-    <h1><%= title %></h1>
-    <nav>
-        <div><a href="/">Home</a></div>
-        <div><a href="/flights">All Flights</a></div>
-        <div><a href="/flights/new">New Flight Form</a></div>
-    </nav>
+<%- include('../partials/header')  %> 
     <h3>All Flights</h3>
     <table id="sortable"> 
         <thead>
@@ -32,8 +16,8 @@
             <td><%= f.airport %></td>
             <td><%= f.flightNo %></td>
             <td><%= f.departs %></td>
+            <td><a href="/flights/<%= f._id %>">more info</a></td>
         <% }); %>
     </tbody>
     </table>
-</body>
-</html>
+<%- include('../partials/footer') %> 

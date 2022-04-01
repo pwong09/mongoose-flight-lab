@@ -14,8 +14,8 @@ function sortBy(e) {
     columns = document.getElementById("sortable").rows[0].cells.length; // num of columns
     arrTable = [...Array(rows)].map(e => Array(columns)); // create an empty 2d array
 
-    for (ro=0; ro<rows; ro++) { // cycle through rows
-        for (co=0; co<columns; co++) { // cycle through columns
+    for (ro=0; ro<rows; ro++) { 
+        for (co=0; co<columns; co++) { 
             // assign the value in each row-column to a 2d array by row-column
             arrTable[ro][co] = document.getElementById("sortable").rows[ro].cells[co].innerHTML;
         }
@@ -23,8 +23,8 @@ function sortBy(e) {
 
     th = arrTable.shift(); // remove the header row from the array, and save it
     console.log(th) // returns an array
-    let c = th.indexOf(e.target.innerText)
-    if (c !== cPrev) { // different column is clicked, so sort by the new column
+    let c = th.indexOf(e.target.innerText) // grab the index to pass through 
+    if (c !== cPrev) { 
         arrTable.sort(
             function (a, b) {
                 if (a[c] === b[c]) {
@@ -40,7 +40,7 @@ function sortBy(e) {
     
     cPrev = c; // save in previous c
 
-    arrTable.unshift(th); // put the header back in to the array
+    arrTable.unshift(th);
 
     // cycle through rows-columns placing values from the array back into the html table
     for (ro=0; ro<rows; ro++) {

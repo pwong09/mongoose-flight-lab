@@ -7,7 +7,8 @@ var logger = require('morgan');
 require('./config/database')
 
 var indexRouter = require('./routes/index');
-var flightsRouter = require('./routes/flights');
+const flightsRouter = require('./routes/flights');
+const destinationsRouter = require('./routes/destinations')
 
 var app = express();
 
@@ -21,8 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', destinationsRouter); // nested resource of flights
 app.use('/', indexRouter);
 app.use('/flights', flightsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
