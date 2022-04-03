@@ -4,6 +4,7 @@ module.exports = {
     index,
     create,
     new: newFlight,
+    delete: deleteFlight,
     show
 }
 
@@ -14,21 +15,22 @@ function index(req, res){
             title: 'PW Flights Lab'
         });
     }).
-    sort({departs: 'ascending'})
+    sort({airline: 'ascending'});
 }
 
 function create(req, res){
+    console.log(req.body)
     const flight = new Flight(req.body);
     flight.save(function(err){
         if (err) return res.render('flights/new');
         console.log(flight);
         res.redirect('/flights');
-    })
+    });
 }
 
 function newFlight(req, res){
-    const newFlight = new Flight();
-    const dt = newFlight.departs;
+    const flight = new Flight();
+    const dt = flight.departs;
     const departsDate = dt.toISOString().slice(0, 16);
     res.render('flights/new', {
         title: 'PW Flights Lab',
@@ -37,11 +39,24 @@ function newFlight(req, res){
 }
 
 function show(req, res){
+    const flight = new Flight();
+    flight.destinations.push({})
+    const at = flight.destinations[0].arrivals;
+    const arrivalsDate = at.toISOString().slice(0, 16);
+    const arrivalAirports = ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
+    console.log(arrivalAirports)
     Flight.findById(req.params.id, function(err, flight){
-        console.log(`show ${req.params.id}`);
         res.render('flights/show', {
             title: 'PW Flights Lab',
-            flight
+            flight,
+            arrivalsDate,
+            arrivalAirports
         });
     });
+}
+
+function deleteFlight(req, res){
+        Flight.findByIdAndDelete(req.params.id, function(err) {
+            res.redirect('/');
+        });
 }

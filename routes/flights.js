@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const flightsCtrl = require('../controllers/flights')
+const flightsCtrl = require('../controllers/flights');
 
 /* GET /flights */
 router.get('/', flightsCtrl.index);
@@ -10,5 +10,7 @@ router.get('/new', flightsCtrl.new);
 router.get('/:id', flightsCtrl.show);
 /* POST new flight to database */
 router.post('/', flightsCtrl.create);
+/* DELETE a whole flight from the database */
+router.delete('/:id', flightsCtrl.delete);
 
 module.exports = router;

@@ -7,6 +7,8 @@
             <th>Airport</th>
             <th>Flight Number</th>
             <th>Departure Date</th>
+            <th>Departure Time</th>
+            <th>More Info</th>
         </tr>
         </thead>                      
     <tbody>
@@ -15,9 +17,11 @@
             <td><%= f.airline %></td>
             <td><%= f.airport %></td>
             <td><%= f.flightNo %></td>
-            <td><%= f.departs %></td>
-            <td><a href="/flights/<%= f._id %>">more info</a></td>
+            <td><%= f.departs.toDateString(); %></td>
+            <td><%= f.departs.toLocaleTimeString(); %></td>
+            <td><a href="/flights/<%= f._id %>">flight details</a></td>
         <% }); %>
+        </tr>
     </tbody>
     </table>
 <%- include('../partials/footer') %> 
