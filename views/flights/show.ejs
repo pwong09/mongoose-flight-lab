@@ -52,6 +52,25 @@
             </tbody>
         </table>
     </div>
+    <!--tickets table-->
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tickets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% tickets.forEach(t => { %>
+                    <tr>
+                        <td><%= t.seat %> </td>
+                        <td><%= t.price %> </td>
+                    </tr>                 
+                <% }) %>
+
+            </tbody>
+        </table>
+    </div>
     </section>
     <!--adding destination form-->
     <form method="POST" action="/flights/<%= flight._id %>/destinations">

@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 const flightsRouter = require('./routes/flights');
 const destinationsRouter = require('./routes/destinations');
 const mealsRouter = require('./routes/meals');
+const ticketsRouter = require('./routes/tickets');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
+app.use('/', ticketsRouter);
 app.use('/', mealsRouter);
 app.use('/', destinationsRouter); // nested resource of flights
 app.use('/', indexRouter);
