@@ -7,7 +7,7 @@ const methodOverride = require('method-override');
 
 require('./config/database')
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const flightsRouter = require('./routes/flights');
 const destinationsRouter = require('./routes/destinations');
 const mealsRouter = require('./routes/meals');

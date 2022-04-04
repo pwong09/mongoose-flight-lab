@@ -97,13 +97,13 @@
             <% }); %>
         </select>
         <input class="button" type="submit" value="Add Meal" />
-    </form>
+    </form><br>
+    <!--new ticket link-->
+    <a class="button" href="/flights/<%= flight._id %>/tickets/new">Add a Ticket</a>
     <br><br><br>
     <!--adding a delete form-->
     <form method="POST" action="/flights/<%= flight._id %>?_method=DELETE">
         <input class="button" type="submit" value="Delete Flight" />
-    </form>
-    <!--adding a meals form form-->
-    <br><br><br>
+    </form><br><br><br>
     <a class="button" href="/flights">Back</a>
 <%- include('../partials/footer') %> 
