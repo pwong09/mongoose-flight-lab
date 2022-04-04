@@ -5,26 +5,34 @@
         <div><span>Flight Number:</span> <%= flight.flightNo %> </div>
         <div><span>Departing from:</span> <%= flight.airport %> </div>
         <div><span>Departure Date & Time:</span> <%= flight.departs %> </div>
-        <div><span>Meal Options:</span><br> 
-            <% const theMeals = []; %> 
-            <% flight.meals.forEach(m => { %>
-                <% theMeals.push(m.theMeal) %> 
-            <% }); %>
-            <% uniqueMeals = [...new Set(theMeals)] %>
-            <% uniqueMeals.forEach(m => { %>
-                <form action="/meals/<%= flight._id %>?_method=DELETE" method="POST">
-                <%= m %>  <input id="delete-meal" type="submit" value="remove" />
-                </form>
-            <% }); %>
+        <div class="table">
+            <table>  
+                <tbody>
+                    <% const theMeals = []; %> 
+                    <% flight.meals.forEach(m => { %>
+                        <% theMeals.push(m.theMeal) %> 
+                    <% }); %>
+                    <% uniqueMeals = [...new Set(theMeals)] %>
+                    <tr>
+                            <td id="meal-options"><span>Meals Options</span></td>
+                            <% uniqueMeals.forEach(m => { %>
+                                <td><form action="/meals/<%= flight._id %>?_method=DELETE" method="POST">
+                                <%= m %>  <input id="delete-meal" type="submit" value="remove" />
+                                </form></td>
+                            <% }); %>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     <!-- destinations table-->
+    <div class="table">
         <table id="sortable">
             <thead>
                 <tr>
                     <th>Arrivals</th>
                     <th>Arrival Date</th> 
                     <th>Arrival Time</th>
-                    <th></th>
+                    <th>Cancel</th>
                 <tr>
             </thead>
             <tbody> 
@@ -43,6 +51,7 @@
                 <% }); %>  
             </tbody>
         </table>
+    </div>
     </section>
     <!--adding destination form-->
     <form method="POST" action="/flights/<%= flight._id %>/destinations">

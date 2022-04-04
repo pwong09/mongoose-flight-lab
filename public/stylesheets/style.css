@@ -12,13 +12,15 @@ nav {
   display: flex;
   justify-content: space-evenly;
   background-color: var(--main-color);
+  padding: 10px;
 }
 nav a {
   color: white;
   text-decoration: none;
+  font-size: 18px;
 }
-h3, form {
-  padding: 10px;
+h3, section, form {
+  padding: 5px 15px;
 }
 .new-flight {
   font-size: 16px;
@@ -26,13 +28,14 @@ h3, form {
 span {
   font-weight: 700;
 }
-select, input {
-  padding: 5px 8px;
-  margin: 5px 0px;
+select, input, button {
+  padding: 3px 5px;
+  margin: 0px;
   font-family: Helvetica, sans-serif;
+  cursor: pointer;
 }
 .button {
-  color: white;
+  color: black;
   background-color: var(--support-1);
   border: 1px solid var(--support-1);
   border-radius: 5px;
@@ -46,18 +49,27 @@ select, input {
   justify-content: space-evenly;
   padding-bottom: 15px;
 }
+#delete-meal {
+  color: var(--main-color);
+  border: none;
+}
 a {
   text-decoration: none;
   color: var(--main-color);
+  background-color: none;
+  cursor: pointer;
 }
 table {
-  margin: 10px;
   text-align: center;
   border: 1px solid black;
 }
-th {
+th, #meal-options {
   background-color: var(--support-1);
-  color: white;
+  color: black;
   padding: 10px;
 }
-
+.table {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
