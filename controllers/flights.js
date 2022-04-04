@@ -53,7 +53,6 @@ function show(req, res){
             arrivalAirports,
             mealOptions
         });
-    console.log(flight);
     });
 }
 

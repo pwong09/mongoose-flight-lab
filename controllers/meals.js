@@ -17,5 +17,10 @@ function create(req, res){
 }
 
 function deleteMeal(req, res){
-
+    Flight.findById(req.params.id, function(err, flight){
+        flight.meals[0].remove();
+        flight.save(function(err) {
+            res.redirect(`/flights/${req.params.id}`);
+        });
+    });
 }
