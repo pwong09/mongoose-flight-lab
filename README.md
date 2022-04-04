@@ -103,7 +103,7 @@ in controllers/destinations.js: make a delete function, use mongoose's findById 
 in controllers/destinations.js: export the function
 in views/flights/show.ejs: add a HTML form to delete - be sure to have method-override installed to the repo and update form's action accordingly
 ```
-3. When adding a destination for a flight, exclude the airports listed in the <select> that have already been used by other destinations and/or the flight's airport.
+3. When adding a destination for a flight, exclude the airports listed in the select that have already been used by other destinations and/or the flight's airport.
 ```
 in controllers/flights.ejs: add an array of possible arrival airports to the show function
 in views/flights/show.ejs: use ejs and call the array to match the correspond flight's departure airport. Push non-matching airports to a new array, then use a forEach function to add those airports into the <select>'s options
