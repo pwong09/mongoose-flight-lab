@@ -149,6 +149,5 @@ in views/flights/show.ejs: use HTML and ejs to add a form to delete each meal op
 ```
 6. Limit users' meal options based on what is already offered on the flight
 ```
-compare all meal options with meals already in flight's meals array
-only show meal options that are not in the flight's meals array
+
 ```
