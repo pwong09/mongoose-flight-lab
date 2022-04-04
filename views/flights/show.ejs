@@ -51,31 +51,43 @@
                 <% }); %>  
             </tbody>
         </table>
-    </div>
+    </div><br>
     <!--tickets table-->
-    <div><span>Ticket Options</span>
+    <div class="table"><span>Ticket Options</span></div>
+    <div class="table">
         <table>
             <thead>
                 <tr>
                     <th>Seat</th>
                     <th>Price</th>
+                    <th>Cancel</th>
                 </tr>
             </thead>
             <tbody>
                 <% tickets.forEach(t => { %>
                     <tr>
                         <td><%= t.seat %> </td>
-                        <td><%= t.price %> </td>
+                        <td>$<%= t.price %> </td>
+                        <td><form action="/tickets/<%= flight._id %>?_method=DELETE" method="POST">
+                            <button name="seat" value="<%= t.seat %>" type="submit">remove</button>
+                        </form></td>
                     </tr>                 
                 <% }) %>
 
             </tbody>
         </table>
+        
+    </div>
+    <!--new ticket link-->
+    <div class="table">
+        <a class="button" href="/flights/<%= flight._id %>/tickets/new">Add a Ticket</a>
     </div>
     </section>
     <!--adding destination form-->
+    <div class="destination-form">
+    <h4>Add a Destination</h4>
     <form method="POST" action="/flights/<%= flight._id %>/destinations">
-        <label>Add a Destination:</label>
+        <label>Destination Airport:</label>
         <select name="airport">
             <% arrivalAirports.forEach(a => { %>
                 <% const list = []; %> 
@@ -85,25 +97,27 @@
                 <% }); %> 
             <% }); %> 
         </select><br>
-        <label>Add an Arrival Date & Time</label><br>
+        <label>Arrival Date & Time</label><br>
         <input name="arrivals" type="datetime-local" value="<%= arrivalsDate %>"><br>
         <input class="button" type="submit" value="Add Destination" />
     </form>
+    </div>
     <!--adding a meals form form-->
-    <form method="POST" action="/flights/<%= flight._id %>/meals">
-        <label>Add a Meal: </label>
+    <div class="meal-form">
+    <h4>Add a Meal</h4>
+    <form  method="POST" action="/flights/<%= flight._id %>/meals">
+        <label>Meal Options: </label>
         <select name="theMeal">
             <% mealOptions.forEach(m => { %>
                 <option value="<%= m %>"><%= m %></option>
             <% }); %>
         </select>
         <input class="button" type="submit" value="Add Meal" />
-    </form><br>
-    <!--new ticket link-->
-    <a class="button" href="/flights/<%= flight._id %>/tickets/new">Add a Ticket</a>
+    </form>
+    </div>
     <br><br><br>
     <!--adding a delete form-->
-    <form method="POST" action="/flights/<%= flight._id %>?_method=DELETE">
+    <form class="table" method="POST" action="/flights/<%= flight._id %>?_method=DELETE">
         <input class="button" type="submit" value="Delete Flight" />
     </form><br><br><br>
     <a class="button" href="/flights">Back</a>
