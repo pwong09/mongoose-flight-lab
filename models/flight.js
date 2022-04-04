@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const mealSchema = new Schema ({
+    meal: {type: String, 
+        enum: ['none', 'breakfast', 'lunch', 'dinner', 'vegetarian', 'kosher', 'halal'], 
+        default: 'none'}
+});
+
 const destinationSchema = new Schema ({
     airport: {type: String, 
                 enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
@@ -20,7 +26,8 @@ const flightSchema = new Schema({
                 max: 9999},
     departs: {type: Date, 
                 default: new Date(new Date().setFullYear(new Date().getFullYear() + 1))},
-    destinations: [destinationSchema]
+    destinations: [destinationSchema],
+    meals: [mealSchema]
 }, {
     timestamps: true
 });

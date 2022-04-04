@@ -6,7 +6,6 @@ module.exports = {
 }
 
 function create(req, res){
-    console.log(req.body)
     Flight.findById(req.params.id, function(err, flight) {
         flight.destinations.push(req.body);
         flight.save(function(err){
@@ -16,7 +15,6 @@ function create(req, res){
 }
 
 function deleteOne(req, res){
-    console.log(req.params.id)
     Flight.findById(req.params.id, function(err, flight){
         flight.destinations[0].remove();
         flight.save(function(err) {

@@ -72,23 +72,78 @@ in views/flights/show.ejs: display the flight details using HTML and ejs
 2. When viewing the details page (show view) for a flight, I want to be able to add a destination for that flight. Each destination, as defined by the schema above, includes an arrival date/time & one of the established airport codes.  
     Note: Multiple destinations are possible by adding them one at a time.
 ```
-
+POST /flights/:id/destinations, controller: create
+$ touch routes/destinations.js
+$ controllers/destinations.js
+in server.js: add a new destinationsRouter 
+in server.js: add app.use('/', destinationsRouter) 
+in routes/destinations.js: router.post('/flights/:id/destinations', destinationsCtrl.create)
+in routes/destinations.js: require controllers/destinations and export module
+in controllers/destinations.js: make function create using req.body and remember to save to Flight. Redirect to same page as the flight where you added the destination
+in controllers/destinations.js: export the function
+in views/flights/show.ejs: add the HTML form to add a destination and arrival date, use ejs where necessary 
 ```
 3. When viewing the details page (show view) for a flight, I want to see a list of that flight's destinations (airport & arrival)
 ```
+My method below actually makes a small table of the destinations and arrival dates, not a list.
+in views/flights/show.ejs: use HTML and ejs to add a table with headers for airports, arrival date, and arrival time. Use a forEach method to get the individual info per flight
 
 ```
 
 ### Implementing Bonuses
 1. Sort the list of destinations for a flight by the arrival date/time in ascending order.
 ```
-
+in views/flights/show.ejs: use ejs and sort method to sort the destinations by arrival date/time before adding the info to the table
 ```
 2. When viewing the details page (show view) for a flight, I want to be able to delete any current destination for that flight.
 ```
-
+DELETE /destinations/:id, controller: delete
+in routes/destinations.js: router.delete('/destinations/:id', destinationsCtrl.delete)
+in controllers/destinations.js: make a delete function, use mongoose's findById and .remove() methods
+in controllers/destinations.js: export the function
+in views/flights/show.ejs: add a HTML form to delete - be sure to have method-override installed to the repo and update form's action accordingly
 ```
 3. When adding a destination for a flight, exclude the airports listed in the <select> that have already been used by other destinations and/or the flight's airport.
 ```
+in controllers/flights.ejs: add an array of possible arrival airports to the show function
+in views/flights/show.ejs: use ejs and call the array to match the correspond flight's departure airport. Push non-matching airports to a new array, then use a forEach function to add those airports into the <select>'s options
+```
 
+### Implementing Unique User Stories (PW's ideas)
+1. In each individual flight's page, add a delete button to delete that flight and take the user back to the main flights view.
+```
+DELETE /flights/:id, controller: delete
+in routes/flights.js: router.delete('/:id', flightsCtrl.delete)
+in controllers/flights.js: add a deleteOne function
+in controllers/flights.js: export delete function
+in views/flights/show.ejs: add a HTML form to delete the flight, adjust the form's action accordingly
+```
+2. Airlines offer different meal options to passengers! Make a new Schema for all possible meal options. Embed the subdocument to the Flight Model.
+```
+in models/flight.js add the mealSchema, set default to 'none'
+```
+3. In the Home page, let the user add meal options to each airline
+```
+POST /flights/:id/meals, controller: create
+$ touch routes/meals.js
+$ touch controllers/meals.js
+in server.js: add a mealsRouter
+in server.js: add app.use('/', mealsRouter)
+in routes/meals.js: router.post('/:id/meals', mealsCtrl.create)
+in controllers/meals.js: add a create function to save the meal option to the corresponding flight
+in controllers/meals.js: export create function
+in views/flights/show.ejs: use HTML and ejs to add a form to add meal options
+style the two forms so it's that they are two separate forms
+```
+4. In each individual flight's page, show a list of the meal offerings for that flight
+```
+in views/flights/show.ejs: use ejs to grab the meal options and show them on the view
+```
+5. In each individual flight's page, add a delete option for the meal offering
+```
+DELETE /meals/:id 
+in routes/meals.js: router.delete('/meals/:id', mealsCtrl.delete)
+in controllers/meals.js: add a deleteOne function to delete a meal option from the corresponding flight
+in controllers/meals.js: export the delete function
+in views/flights/show.ejs: use HTML and ejs to add a form to delete each meal option
 ```
