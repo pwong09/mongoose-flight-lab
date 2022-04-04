@@ -2,7 +2,7 @@ const Flight = require('../models/flight');
 
 module.exports = {
     create,
-    delete: deleteOne
+    delete: deleteDestination
 }
 
 function create(req, res){
@@ -14,7 +14,7 @@ function create(req, res){
     });
 }
 
-function deleteOne(req, res){
+function deleteDestination(req, res){
     Flight.findById(req.params.id, function(err, flight){
         flight.destinations[0].remove();
         flight.save(function(err) {

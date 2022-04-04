@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const mealSchema = new Schema ({
-    meal: {type: String, 
-        enum: ['none', 'breakfast', 'lunch', 'dinner', 'vegetarian', 'kosher', 'halal'], 
+    theMeal: {type: String,
+            enum: ['none', 'breakfast', 'lunch', 'dinner', 'vegetarian', 'kosher', 'halal'], 
         default: 'none'}
 });
 

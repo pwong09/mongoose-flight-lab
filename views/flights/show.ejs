@@ -5,6 +5,13 @@
         <div><span>Flight Number:</span> <%= flight.flightNo %> </div>
         <div><span>Departing from:</span> <%= flight.airport %> </div>
         <div><span>Departure Date & Time:</span> <%= flight.departs %> </div>
+        <div><span>Meal Options:</span> 
+            <% const uniqueMeals = []; %> 
+            <% flight.meals.forEach(m => { %>
+                <% uniqueMeals.push(m.theMeal) %> 
+            <% }); %>
+            <%= [...new Set(uniqueMeals)] %>  
+        </div>
     <!-- destinations table-->
         <table id="sortable">
             <thead>
@@ -48,10 +55,22 @@
         <input name="arrivals" type="datetime-local" value="<%= arrivalsDate %>"><br>
         <input class="button" type="submit" value="Add Destination" />
     </form>
+    <!--adding a meals form form-->
+    <form method="POST" action="/flights/<%= flight._id %>/meals">
+        <label>Add a Meal: </label>
+        <select name="theMeal">
+            <% mealOptions.forEach(m => { %>
+                <option value="<%= m %>"><%= m %></option>
+            <% }); %>
+        </select>
+        <input class="button" type="submit" value="Add Meal" />
+    </form>
     <br><br><br>
+    <!--adding a delete form-->
     <form method="POST" action="/flights/<%= flight._id %>?_method=DELETE">
         <input class="button" type="submit" value="Delete Flight" />
     </form>
+    <!--adding a meals form form-->
     <br><br><br>
     <a class="button" href="/flights">Back</a>
 <%- include('../partials/footer') %> 

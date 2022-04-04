@@ -43,15 +43,17 @@ function show(req, res){
     flight.destinations.push({})
     const at = flight.destinations[0].arrivals;
     const arrivalsDate = at.toISOString().slice(0, 16);
-    const arrivalAirports = ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
-    console.log(arrivalAirports)
+    const arrivalAirports = ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'];
+    const mealOptions = ['none', 'breakfast', 'lunch', 'dinner', 'vegetarian', 'kosher', 'halal'];
     Flight.findById(req.params.id, function(err, flight){
         res.render('flights/show', {
             title: 'PW Flights Lab',
             flight,
             arrivalsDate,
-            arrivalAirports
+            arrivalAirports,
+            mealOptions
         });
+    console.log(flight);
     });
 }
 
