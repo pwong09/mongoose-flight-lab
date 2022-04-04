@@ -108,7 +108,7 @@ in views/flights/show.ejs: add a HTML form to delete - be sure to have method-ov
 in controllers/flights.ejs: add an array of possible arrival airports to the show function
 in views/flights/show.ejs: use ejs and call the array to match the correspond flight's departure airport. Push non-matching airports to a new array, then use a forEach function to add those airports into the <select>'s options
 ```
-
+  
 ### Implementing Unique User Stories (PW's ideas)
 1. In each individual flight's page, add a delete button to delete that flight and take the user back to the main flights view.
 ```
