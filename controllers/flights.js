@@ -47,7 +47,7 @@ function show(req, res){
     const arrivalAirports = ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'];
     const mealOptions = ['none', 'breakfast', 'lunch', 'dinner', 'vegetarian', 'kosher', 'halal'];
     Flight.findById(req.params.id, function(err, flight){
-        Ticket.find({flight: flight._id}, function(err, tickets) {
+        Ticket.find({flight: req.params.id}, function(err, tickets) {
             res.render('flights/show', {
                 title: 'PW Flights Lab',
                 flight,

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const flightsCtrl = require('../controllers/flights');
 
+
 /* GET /flights */
 router.get('/', flightsCtrl.index);
 /* GET new flight form */
@@ -12,5 +13,7 @@ router.get('/:id', flightsCtrl.show);
 router.post('/', flightsCtrl.create);
 /* DELETE a whole flight from the database */
 router.delete('/:id', flightsCtrl.delete);
+
+
 
 module.exports = router;
