@@ -108,7 +108,41 @@ in views/flights/show.ejs: add a HTML form to delete - be sure to have method-ov
 in controllers/flights.ejs: add an array of possible arrival airports to the show function
 in views/flights/show.ejs: use ejs and call the array to match the correspond flight's departure airport. Push non-matching airports to a new array, then use a forEach function to add those airports into the <select>'s options
 ```
-  
+## Lab 3
+### linking two Models
+1. Create a ticketSchema that will be compiled into a Ticket Model
+```
+$ touch models/ticket.js
+$ touch routes/tickets.js
+$ touch controllers/tickets.js
+in models/ticket.js: make a new Schema named ticketSchema, export it as a mongoose model
+in routes/tickets.js: require express and express.Router(), then export router
+in controllers/tickets.js: require both Ticket and Flight models 
+in server.js: add a ticketsRouter variable and call it in a new app.use('/')
+```
+2. Modify the show view for a flight to render a list or table of tickets that have been created for that flight
+```
+in controllers/flights.js: inside the show function, add code to grab info from the Ticket Model. Use the flight's id or req.params.id to match for the correct tickets
+in views/flights/show.ejs: use HTML and ejs to loop through the tickets and show the ticket's seat and price
+```
+3. Display a New Ticket link, styled like a button, that leads to a form to add a new ticket to the corresponding flight. When the form is submitted, the user should be redirected to the show page and a new ticket should render in the tickets table
+```
+$ mkdir views/tickets
+$ touch views/tickets/new.ejs
+in routes/tickets.js: router.get('/flights/:id/tickets/new', ticketsCtrl.newTicket);
+in routes/tickets.js: router.post('/flights/:id/tickets', ticketsCtrl.createTicket);
+in controllers/tickets.js: newTicket function should render the tickets/new.ejs page
+in controllers/tickets.js: createTicket function should create a ticket with seat and price from the form. Add code to also include the flight's id number to the new ticket
+in controllers/tickets.js: export all functions
+in views/tickets/new.ejs: use HTML and ejs to add a form to add a ticket, ensure the action link corresponds with the POST route
+```
+### Implementing Bonus
+- Delete a ticket
+```
+in routes/tickets.js: router.delete('/tickets/:id', ticketsCtrl.deleteTicket);
+in views/flights/show.ejs: use HTML and ejs to add a delete form, add a name and value attribute
+in controllers/tickets.js: deleteTicket function should delete a ticket based on the criteria taken from the delete form
+```
 ### Implementing Unique User Stories (PW's ideas)
 1. In each individual flight's page, add a delete button to delete that flight and take the user back to the main flights view.
 ```
@@ -149,5 +183,7 @@ in views/flights/show.ejs: use HTML and ejs to add a form to delete each meal op
 ```
 6. Limit users' meal options based on what is already offered on the flight
 ```
-
+in controllers/flights.js: add an array of all possible meal options
+in views/flights/show.ejs: in the section where you display meal options, make an array of meal options that have already been chosen
+in views/flights/show.ejs: in the form to add a meal, compare the two arrays and only display options that have not already been chosen
 ```
