@@ -4,7 +4,8 @@
         <div><span>Airline:</span> <%= flight.airline %> </div>
         <div><span>Flight Number:</span> <%= flight.flightNo %> </div>
         <div><span>Departing from:</span> <%= flight.airport %> </div>
-        <div><span>Departure Date & Time:</span> <%= flight.departs %> </div>
+        <div><span>Departure Date:</span> <%= flight.departs.toDateString() %> </div>
+        <div><span>Departure Time:</span> <%= flight.departs.toLocaleTimeString() %> </div>
     <!-- destinations table-->
     <div class="table">
         <table id="sortable">
